@@ -1,5 +1,7 @@
 package com.progra.grupo.lostmydoggo;
 
+import java.util.ArrayList;
+
 public class Usuario {
     private int id;
     private String nombre;
@@ -12,6 +14,10 @@ public class Usuario {
         }else {
             return false;
         }
+    }
+
+    public void responderNotificacion(boolean valid){
+
     }
     public int getId() {
         return id;

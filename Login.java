@@ -49,7 +49,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
      * TODO: remove after connecting to a real authentication system.
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
+            "foo@example.com:hello", "bar@example.com:world","XXX69_Pussy_Destroyer_69xxx@something.com:password123","cocoAndres@gatitos.com:ilovefish"
     };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.

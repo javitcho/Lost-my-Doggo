@@ -4,15 +4,24 @@ import android.location.Location;
 
 public class Alertas {
     private int id;
-    private int idMascota;
+    private Mascota idMascota;
     private Location lugar;
     private int rango;
 
-    public Alertas(int id, int idMascota, Location lugar, int rango){
+    public Alertas(int id, Mascota idMascota, Location lugar, int rango){
     this.id = id;
     this.idMascota= idMascota;
     this.lugar = lugar;
     this.rango = rango;
+    }
+
+
+    public boolean equals(Alertas alerta) {
+        if(this.id==alerta.getId()){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public int getRango() {
@@ -31,7 +40,7 @@ public class Alertas {
         return id;
     }
 
-    public int getIdMascota() {
+    public Mascota getIdMascota() {
         return idMascota;
     }
 
@@ -39,7 +48,7 @@ public class Alertas {
         return lugar;
     }
 
-    public void setIdMascota(int idMascota) {
+    public void setIdMascota(Mascota idMascota) {
         this.idMascota = idMascota;
     }
 

@@ -8,9 +8,9 @@ public class Mascota {
     private int id;
     private String color;
     private Image imagen;
-    private int idDueno;
+    private Usuario idDueno;
 
-    public Mascota(int id,String nombre, String descripcion, String color, Image imagen, int idDueno){
+    public Mascota(int id,String nombre, String descripcion, String color, Image imagen, Usuario idDueno){
         this.id = id;
         this.nombre = nombre;
         this.descripcion=descripcion;
@@ -18,11 +18,11 @@ public class Mascota {
         this.imagen = imagen;
         this.idDueno=idDueno;
     }
-    public int getIdDueno() {
+    public Usuario getIdDueno() {
         return idDueno;
     }
 
-    public void setIdDueno(int idDueno) {
+    public void setIdDueno(Usuario idDueno) {
         this.idDueno = idDueno;
     }
 
