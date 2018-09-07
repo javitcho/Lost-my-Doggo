@@ -8,6 +8,20 @@ public class Usuario {
     private String contrasena;
     private int telefono;
 
+    public Usuario(int id, String nombre, String contrasena, int telefono){
+        this.id = id;
+        this.nombre = nombre;
+        this.contrasena = contrasena;
+        this.telefono = telefono;
+    }
+
+    @Override
+    public String toString() {
+        String cadena = "Nombre:"+this.nombre+"\n" +
+                "telefono:"+this.telefono;
+        return cadena;
+    }
+
     public boolean validar(String nombre, String contrasena){
         if(this.nombre.equals(nombre) && this.contrasena.equals(contrasena)){
             return true;

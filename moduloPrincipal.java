@@ -10,6 +10,61 @@ public class moduloPrincipal {
     private ArrayList<Usuario> usuarios;
     private ArrayList<Mascota> mascotas;
     private queries queries;
+
+    public moduloPrincipal(ArrayList<Alertas> alertas,ArrayList<Usuario> usuarios,ArrayList<Mascota> mascotas){
+        this.alertas = alertas;
+        this.usuarios = usuarios;
+        this.mascotas = mascotas;
+        this.queries = new queries();
+    }
+    public int login(String nombre,String contrasena){
+        int j = 0;
+        boolean existe = false;
+        for(int i = 0;i < this.usuarios.size();i++){
+            if(this.usuarios.get(i).validar(nombre,contrasena)){
+                j = i;
+                existe = true;
+                break;
+            }
+        }
+        if(existe){
+            return j;
+        }else{
+            return -1;
+        }
+    }
+    public ArrayList<Alertas> getAlertas() {
+        return alertas;
+    }
+
+    public ArrayList<Mascota> getMascotas() {
+        return mascotas;
+    }
+
+    public ArrayList<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public com.progra.grupo.lostmydoggo.queries getQueries() {
+        return queries;
+    }
+
+    public void setAlertas(ArrayList<Alertas> alertas) {
+        this.alertas = alertas;
+    }
+
+    public void setMascotas(ArrayList<Mascota> mascotas) {
+        this.mascotas = mascotas;
+    }
+
+    public void setQueries(com.progra.grupo.lostmydoggo.queries queries) {
+        this.queries = queries;
+    }
+
+    public void setUsuarios(ArrayList<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
     public void eliminarAlerta(int id){
         for(int i = 0; i<this.alertas.size();i++){
             if(this.alertas.get(i).getId()==id){
@@ -35,5 +90,11 @@ public class moduloPrincipal {
         return nueva;
     }
 
+    public void agregarUsuario(Usuario usuario){
+        this.usuarios.add(usuario);
+    }
+    public void agregarMascota(Mascota mascota){
+        this.mascotas.add(mascota);
+    }
 
 }

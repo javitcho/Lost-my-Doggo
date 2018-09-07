@@ -15,6 +15,14 @@ public class Alertas {
     this.rango = rango;
     }
 
+    @Override
+    public String toString() {
+        String cadena = "id ="+this.id+"\n" +
+                "mascota: "+this.idMascota.toString()+"\n" +
+                "lugar: "+this.lugar.getLatitude()+","+this.lugar.getLongitude()+"\n" +
+                "rango: "+this.rango;
+        return cadena;
+    }
 
     public boolean equals(Alertas alerta) {
         if(this.id==alerta.getId()){

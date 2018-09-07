@@ -18,6 +18,16 @@ public class Mascota {
         this.imagen = imagen;
         this.idDueno=idDueno;
     }
+
+    @Override
+    public String toString() {
+        String cadena = "Nombre: "+this.nombre+"\n" +
+                "descripcion: "+this.descripcion+"\n" +
+                "color: "+this.color+"\n" +
+                "Dueño: "+this.idDueno.toString();
+        return cadena;
+    }
+
     public Usuario getIdDueno() {
         return idDueno;
     }
