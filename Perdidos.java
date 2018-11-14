@@ -1,7 +1,16 @@
-package com.progra.grupo.lostmydoggo;
+package com.progra.grupo.test;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -13,7 +22,31 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class Perdidos extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private moduloPrincipal cosa;
+    private Location loc;
+    private final LocationListener locationListener = new LocationListener() {
+        @Override
+        public void onLocationChanged(Location location) {
+            loc = location;
+        }
 
+        @Override
+        public void onStatusChanged(String s, int i, Bundle bundle) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String s) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String s) {
+
+        }
+    };
+
+    LocationManager lm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +55,12 @@ public class Perdidos extends FragmentActivity implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        Intent intent = getIntent();
+        cosa = (moduloPrincipal) intent.getSerializableExtra("cosa");
+        lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},101);}
+        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, locationListener);
     }
 
 
@@ -37,10 +76,19 @@ public class Perdidos extends FragmentActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},101);
+        }
+        loc = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        populateMap(loc);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lm.getLastKnownLocation(LocationManager.GPS_PROVIDER).getLatitude(),lm.getLastKnownLocation(LocationManager.GPS_PROVIDER).getLongitude()),15.0f));
     }
+
+    public void populateMap(Location location){
+        for(int i = 0; i< cosa.filtrarAlertas(location).size();i++){
+            Alertas alerta = cosa.filtrarAlertas(location).get(i);
+            mMap.addMarker(new MarkerOptions().position(new LatLng(alerta.getLugar().getLatitude(),alerta.getLugar().getLongitude())).title(alerta.getIdMascota().getNombre()));
+        }
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.progra.grupo.lostmydoggo;
+package com.progra.grupo.test;
 
 import android.media.Image;
 
@@ -24,7 +24,8 @@ public class Mascota {
         String cadena = "Nombre: "+this.nombre+"\n" +
                 "descripcion: "+this.descripcion+"\n" +
                 "color: "+this.color+"\n" +
-                "Dueño: "+this.idDueno.toString();
+                "Dueño: "+this.idDueno.toString()+"\n" +
+                "Tel: "+this.idDueno.getTelefono();
         return cadena;
     }
 

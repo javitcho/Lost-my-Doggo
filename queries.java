@@ -1,14 +1,15 @@
-package com.progra.grupo.lostmydoggo;
+package com.progra.grupo.test;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
 //contiene los métodos para realizar queries UPDATE INSERT SELECT y DELETE
-public class queries {
+public class queries implements Serializable{
     
-    static final String bd="jdbc:mysql://216.105.171.83:3306/2005003246";
-    static final String usuario="2005003246";
-    static final String contraseña="EV1nt3rn@";
+    static final String bd="jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9263625";
+    static final String usuario="sql9263625";
+    static final String contraseña="erTzbCSpgt";
     //EV1nt3rn@
     
     //Método agregar

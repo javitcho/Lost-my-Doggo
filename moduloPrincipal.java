@@ -1,22 +1,24 @@
-package com.progra.grupo.lostmydoggo;
+package com.progra.grupo.test;
 
 import android.location.Location;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class moduloPrincipal {
+public class moduloPrincipal implements Serializable{
     private ArrayList<Alertas> alertas;
     private ArrayList<Usuario> usuarios;
     private ArrayList<Mascota> mascotas;
     private queries queries;
 
-    public moduloPrincipal(ArrayList<Alertas> alertas,ArrayList<Usuario> usuarios,ArrayList<Mascota> mascotas){
-        this.alertas = alertas;
-        this.usuarios = usuarios;
-        this.mascotas = mascotas;
+    public moduloPrincipal(){
+        this.alertas = new ArrayList();
+        this.usuarios = new ArrayList();
+        this.mascotas = new ArrayList();
         this.queries = new queries();
     }
+
     public int login(String nombre,String contrasena){
         int j = 0;
         boolean existe = false;
@@ -33,6 +35,7 @@ public class moduloPrincipal {
             return -1;
         }
     }
+
     public ArrayList<Alertas> getAlertas() {
         return alertas;
     }
@@ -45,7 +48,7 @@ public class moduloPrincipal {
         return usuarios;
     }
 
-    public com.progra.grupo.lostmydoggo.queries getQueries() {
+    public queries getQueries() {
         return queries;
     }
 
@@ -57,7 +60,7 @@ public class moduloPrincipal {
         this.mascotas = mascotas;
     }
 
-    public void setQueries(com.progra.grupo.lostmydoggo.queries queries) {
+    public void setQueries(queries queries) {
         this.queries = queries;
     }
 

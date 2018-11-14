@@ -1,4 +1,4 @@
-package com.progra.grupo.lostmydoggo;
+package com.progra.grupo.test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

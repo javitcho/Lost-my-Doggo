@@ -1,4 +1,4 @@
-package com.progra.grupo.lostmydoggo;
+package com.progra.grupo.test;
 
 import android.location.Location;
 
@@ -17,10 +17,8 @@ public class Alertas {
 
     @Override
     public String toString() {
-        String cadena = "id ="+this.id+"\n" +
-                "mascota: "+this.idMascota.toString()+"\n" +
-                "lugar: "+this.lugar.getLatitude()+","+this.lugar.getLongitude()+"\n" +
-                "rango: "+this.rango;
+        String cadena =
+                "mascota: "+this.idMascota.toString();
         return cadena;
     }
 
