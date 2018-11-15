@@ -1,6 +1,7 @@
 package com.progra.grupo.test;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -45,7 +46,7 @@ public class Perdidos extends FragmentActivity implements OnMapReadyCallback {
 
         }
     };
-
+    private Usuario usuario;
     LocationManager lm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,7 @@ public class Perdidos extends FragmentActivity implements OnMapReadyCallback {
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         Intent intent = getIntent();
+        usuario = (Usuario) intent.getSerializableExtra("usuario");
         cosa = (moduloPrincipal) intent.getSerializableExtra("cosa");
         lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
@@ -81,14 +83,28 @@ public class Perdidos extends FragmentActivity implements OnMapReadyCallback {
         }
         loc = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         populateMap(loc);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lm.getLastKnownLocation(LocationManager.GPS_PROVIDER).getLatitude(),lm.getLastKnownLocation(LocationManager.GPS_PROVIDER).getLongitude()),15.0f));
+        try {
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lm.getLastKnownLocation(LocationManager.GPS_PROVIDER).getLatitude(), lm.getLastKnownLocation(LocationManager.GPS_PROVIDER).getLongitude()), 15.0f));
+        }catch(Exception blyat){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("No hemos podido acceder a tu localización, revisa el estado de GPS y reinicia la app");
+            builder.show();
+        }
     }
 
     public void populateMap(Location location){
         for(int i = 0; i< cosa.filtrarAlertas(location).size();i++){
             Alertas alerta = cosa.filtrarAlertas(location).get(i);
-            mMap.addMarker(new MarkerOptions().position(new LatLng(alerta.getLugar().getLatitude(),alerta.getLugar().getLongitude())).title(alerta.getIdMascota().getNombre()));
+            mMap.addMarker(new MarkerOptions().position(alerta.getLugar().toLatLng()).title(alerta.getIdMascota().getNombre()));
         }
+    }
+
+    public void onBackPressed(){
+        Intent end = new Intent();
+        end.putExtra("cosa",cosa);
+        end.putExtra("usuario",usuario);
+        setResult(RESULT_OK,end);
+        finish();
     }
 
 }

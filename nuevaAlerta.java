@@ -58,11 +58,8 @@ public class nuevaAlerta extends AppCompatActivity {
 
     private void onResult(){
         if(place!=null) {
-            Location location = new Location(LocationManager.GPS_PROVIDER);
-            location.setLatitude(place.getLatLng().latitude);
-            location.setLongitude(place.getLatLng().longitude);
             Mascota mascota = new Mascota(cosa.getMascotas().size(), nombre, descripcion, colour, null, usuario);
-            Alertas alerta = new Alertas(cosa.getAlertas().size(), mascota, location, rango);
+            Alertas alerta = new Alertas(cosa.getAlertas().size(), mascota, new SLatLng(place.getLatLng()), rango);
             cosa.nuevaAlerta(alerta);
             Intent intent = new Intent(this,Perdidos.class);
             intent.putExtra("cosa",cosa);
@@ -82,5 +79,13 @@ public class nuevaAlerta extends AppCompatActivity {
                 onResult();
             }
         }
+    }
+
+    public void onBackPressed(){
+        Intent end = new Intent();
+        end.putExtra("cosa",cosa);
+        end.putExtra("usuario",usuario);
+        setResult(RESULT_OK,end);
+        finish();
     }
 }

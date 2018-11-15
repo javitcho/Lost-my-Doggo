@@ -31,9 +31,6 @@ public class Usuario implements Serializable{
         }
     }
 
-    public void responderNotificacion(boolean valid){
-
-    }
     public int getId() {
         return id;
     }

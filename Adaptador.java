@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Adaptador extends RecyclerView.Adapter<Adaptador.MyViewHolder> {
     private ArrayList<Alertas> alertas;
-
+    int p;
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         public TextView view;
         public MyViewHolder(@NonNull TextView itemView) {
@@ -20,14 +20,14 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.MyViewHolder> {
         }
     }
 
-    public Adaptador(ArrayList<Alertas> alertas) {
+    public Adaptador(ArrayList<Alertas> alertas,int p) {
         this.alertas = alertas;
+        this.p = p;
     }
-
     @NonNull
     @Override
     public Adaptador.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        TextView v = (TextView) LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_tinder,viewGroup,false);
+        TextView v = (TextView) LayoutInflater.from(viewGroup.getContext()).inflate(this.p,viewGroup,false);
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
     }

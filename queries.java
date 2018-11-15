@@ -7,9 +7,9 @@ import java.util.Scanner;
 //contiene los métodos para realizar queries UPDATE INSERT SELECT y DELETE
 public class queries implements Serializable{
     
-    static final String bd="jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9263625";
-    static final String usuario="sql9263625";
-    static final String contraseña="erTzbCSpgt";
+    static final String bd="jdbc:mysql://db4free.net:3306/sql9263625";
+    static final String usuario="lostmydoggo";
+    static final String contraseña="LostMyDoggo";
     //EV1nt3rn@
     
     //Método agregar

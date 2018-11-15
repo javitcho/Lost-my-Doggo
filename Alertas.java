@@ -2,13 +2,17 @@ package com.progra.grupo.test;
 
 import android.location.Location;
 
-public class Alertas {
+import com.google.android.gms.maps.model.LatLng;
+
+import java.io.Serializable;
+
+public class Alertas implements Serializable{
     private int id;
     private Mascota idMascota;
-    private Location lugar;
+    private SLatLng lugar;
     private int rango;
 
-    public Alertas(int id, Mascota idMascota, Location lugar, int rango){
+    public Alertas(int id, Mascota idMascota, SLatLng lugar, int rango){
     this.id = id;
     this.idMascota= idMascota;
     this.lugar = lugar;
@@ -18,7 +22,7 @@ public class Alertas {
     @Override
     public String toString() {
         String cadena =
-                "mascota: "+this.idMascota.toString();
+                this.idMascota.toString();
         return cadena;
     }
 
@@ -50,7 +54,7 @@ public class Alertas {
         return idMascota;
     }
 
-    public Location getLugar() {
+    public SLatLng getLugar() {
         return lugar;
     }
 
@@ -58,7 +62,7 @@ public class Alertas {
         this.idMascota = idMascota;
     }
 
-    public void setLugar(Location lugar) {
+    public void setLugar(SLatLng lugar) {
         this.lugar = lugar;
     }
 }

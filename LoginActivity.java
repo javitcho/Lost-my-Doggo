@@ -265,7 +265,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             dialogInterface.dismiss();
                             startMenu();
                         } catch (Exception e) {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                            AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                             builder.setMessage("Por favor ingrese un número de teléfono válido");
                             builder.show();
                         }

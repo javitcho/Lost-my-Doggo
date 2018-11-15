@@ -1,13 +1,16 @@
 package com.progra.grupo.test;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
-public class Tinder extends AppCompatActivity {
+import java.util.ArrayList;
 
+public class MisAlertas extends AppCompatActivity {
     private moduloPrincipal cosa;
     RecyclerView recycler;
     RecyclerView.Adapter adapter;
@@ -23,8 +26,9 @@ public class Tinder extends AppCompatActivity {
         recycler = (RecyclerView) findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(this);
         recycler.setLayoutManager(layoutManager);
-        adapter = new Adaptador(cosa.getAlertas(),R.layout.m_text_view);
+        adapter = new Adaptador(cosa.alertasDe(usuario),R.layout.m_text_view);
         recycler.setAdapter(adapter);
+
     }
 
     public void onBackPressed(){
@@ -34,5 +38,9 @@ public class Tinder extends AppCompatActivity {
         setResult(RESULT_OK,end);
         finish();
     }
+
+
+
+
 
 }

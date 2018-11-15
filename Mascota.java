@@ -2,12 +2,13 @@ package com.progra.grupo.test;
 
 import android.media.Image;
 
-public class Mascota {
+import java.io.Serializable;
+
+public class Mascota implements Serializable{
     private String nombre;
     private String descripcion;
     private int id;
     private String color;
-    private Image imagen;
     private Usuario idDueno;
 
     public Mascota(int id,String nombre, String descripcion, String color, Image imagen, Usuario idDueno){
@@ -15,7 +16,6 @@ public class Mascota {
         this.nombre = nombre;
         this.descripcion=descripcion;
         this.color = color;
-        this.imagen = imagen;
         this.idDueno=idDueno;
     }
 
@@ -24,8 +24,7 @@ public class Mascota {
         String cadena = "Nombre: "+this.nombre+"\n" +
                 "descripcion: "+this.descripcion+"\n" +
                 "color: "+this.color+"\n" +
-                "Dueño: "+this.idDueno.toString()+"\n" +
-                "Tel: "+this.idDueno.getTelefono();
+                "Dueño: \n"+this.idDueno.toString()+"\n";
         return cadena;
     }
 
@@ -53,9 +52,6 @@ public class Mascota {
         return nombre;
     }
 
-    public Image getImagen() {
-        return imagen;
-    }
 
     public String getDescripcion() {
         return descripcion;
@@ -73,7 +69,4 @@ public class Mascota {
         this.descripcion = descripcion;
     }
 
-    public void setImagen(Image imagen) {
-        this.imagen = imagen;
-    }
 }
